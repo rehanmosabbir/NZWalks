@@ -24,7 +24,7 @@ namespace NZWalks.API.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        [Authorize(Roles = "reader")]
+        [Authorize(Roles = "reader,writer")]
         public async Task<IActionResult> GetAll()
         {
             var regionsDomain = await _regionRepository.GetAllAsync();
@@ -48,7 +48,7 @@ namespace NZWalks.API.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
-        [Authorize(Roles = "reader")]
+        [Authorize(Roles = "reader,writer")]
         public async Task<IActionResult> GetById([FromRoute] Guid id) 
         {
             //var regionDomain = await _dbContext.Regions.FindAsync(id);
